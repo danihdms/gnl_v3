@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dhaydamo <dhaydamo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/15 19:40:19 by dhaydamo          #+#    #+#             */
+/*   Updated: 2022/11/15 19:42:22 by dhaydamo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 size_t	ft_strlen(char *str)
@@ -6,7 +18,7 @@ size_t	ft_strlen(char *str)
 
 	i = 0;
 	while (str[i])
-        i++;
+		i++;
 	return (i);
 }
 
@@ -48,14 +60,14 @@ char	*ft_strjoin(char *s1, char *s2)
 
 int	contains_new_line(char *buffer)
 {
-	int i;
+	int	i;
 
-    i = 0;
-    while (buffer[i])
-    {
-        if (buffer[i] == '\n')
-            return (1);
-        i++;
-    }
-    return (0);
+	i = 0;
+	while (buffer[i])
+	{
+		if (buffer[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
 }
