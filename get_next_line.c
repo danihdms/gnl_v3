@@ -6,12 +6,11 @@
 /*   By: dhaydamo <dhaydamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:40:09 by dhaydamo          #+#    #+#             */
-/*   Updated: 2022/11/15 19:51:14 by dhaydamo         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:59:55 by dhaydamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 char	*get_next_line(int fd)
 {
