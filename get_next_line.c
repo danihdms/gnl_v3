@@ -6,7 +6,7 @@
 /*   By: dhaydamo <dhaydamo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:40:09 by dhaydamo          #+#    #+#             */
-/*   Updated: 2022/11/16 16:59:55 by dhaydamo         ###   ########.fr       */
+/*   Updated: 2022/11/16 22:12:10 by dhaydamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,10 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*remainder;
 
-	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, &line, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
 		return (NULL);
 	remainder = fill_remainder(fd, remainder);
-	if (!remainder)
-		return (NULL);
 	line = get_line(remainder);
-	if (!line)
-		return (NULL);
 	remainder = clean_remainder(remainder);
 	return (line);
 }
@@ -33,7 +29,7 @@ char	*fill_remainder(int fd, char *remainder)
 {
 	char	*buffer;
 	char	*line;
-	int		read_int;
+	ssize_t	read_int;
 
 	if (!remainder)
 		remainder = ft_calloc(sizeof(char), 1);
@@ -47,7 +43,7 @@ char	*fill_remainder(int fd, char *remainder)
 		if (read_int == -1)
 		{
 			free(buffer);
-			return (remainder);
+			return (NULL);
 		}
 		buffer[read_int] = 0;
 		line = ft_strjoin(remainder, buffer);
@@ -85,9 +81,9 @@ char	*get_line(char *remainder)
 
 char	*clean_remainder(char *remainder)
 {
-	char	*final;
 	int		len;
 	int		i;
+	char	*final;
 
 	i = 0;
 	while (remainder[i] && remainder[i] != '\n')
@@ -104,6 +100,7 @@ char	*clean_remainder(char *remainder)
 	i++;
 	while (remainder[i])
 		final[len++] = remainder[i++];
+	final[len] = 0;
 	free(remainder);
 	return (final);
 }
